@@ -15,7 +15,7 @@ This microservice provides currency exchange rates from the Central Bank of Russ
 
 1. Clone the repository:
 
-git clone <repository_url>
+git clone https://github.com/Azimjon13/xml_to_json_service.git
 
 2. Install dependencies:
 composer install
