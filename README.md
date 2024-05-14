@@ -1,3 +1,74 @@
+
+# Currency Exchange Microservice
+
+This microservice provides currency exchange rates from the Central Bank of Russia's REST API.
+
+## Features
+
+- Fetches current currency exchange rates from the Central Bank of Russia's API.
+- Stores fetched data in a local database.
+- Provides an API endpoint to retrieve currency exchange rates in JSON format.
+- Implements retry mechanism for failed requests.
+- Configurable proxy settings for accessing external APIs.
+
+## Installation
+
+1. Clone the repository:
+
+git clone <repository_url>
+
+2. Install dependencies:
+composer install
+
+3. Copy the `.env.example` file to `.env` and configure the database connection and other settings:
+cp .env.example .env
+
+4. Generate an application key:
+php artisan key:generate
+
+5. Run database migrations:
+php artisan migrate
+
+
+The microservice should now be running locally at `http://localhost:8000`.
+
+## Configuration
+
+You can configure the external API URL and other parameters in the `.env` file.
+
+CBR_API_URL=http://www.cbr.ru/scripts/XML_daily.asp
+PROXY_URL=http://your-proxy-url:port
+PROXY_USERNAME=username
+PROXY_PASSWORD=password
+
+
+## API Endpoints
+
+### Get Currency Exchange Rates
+
+GET /api/currency-rates
+
+Returns the current currency exchange rates in JSON format.
+
+## Usage
+
+You can integrate this microservice into your application by making HTTP requests to the provided API endpoints.
+
+## Credits
+
+This microservice is developed by [Azimjon13] and is based on the Laravel framework.
+
+## License
+
+This project is open-source and licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
