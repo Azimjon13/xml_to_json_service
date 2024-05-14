@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Traits;
+
+use Illuminate\Http\JsonResponse;
+
+trait Responsable
+{
+    /**
+     * Generate success type response.
+     *
+     * Returns the success data and message if there is any error
+     *
+     * @param object $data
+     * @param string $message
+     * @param integer $status_code
+     * @return JsonResponse
+     */
+    public function responseSuccess($data, $message = "Successful", $status_code = JsonResponse::HTTP_OK): JsonResponse
+    {
+        return response()->json([
+            'status'  => true,
+            'message' => $message,
+            'errors'  => null,
+            'data'    => $data,
+        ], $status_code);
+    }
+
+    public function responseSuccessPaginate($data, $message = "Successful", $status_code = JsonResponse::HTTP_OK): JsonResponse
+    {
+        return response()->json([
+            'status'  => true,
+            'message' => $message,
+            'errors'  => null,
+            'pagination'    => $data,
+        ], $status_code);
+    }
+
+    public function responseSuccessRaw($data, $message = "Successful", $status_code = JsonResponse::HTTP_OK): JsonResponse
+    {
+        return response()->json($data, $status_code);
+    }
+
+    protected function respondWithResourceCollection($resourceCollection, $message = "Successful", $status_code = JsonResponse::HTTP_OK, $headers = []): JsonResponse
+    {
+        return response()->json([
+            'status'  => true,
+            'message' => $message,
+            'errors'  => null,
+            'result' => $resourceCollection->response()->getData()
+        ], $status_code);
+    }
+
+    /**
+     * Generate Error response.
+     *
+     * Returns the errors data if there is any error
+     *
+     * @param object $errors
+     * @return JsonResponse
+     */
+    public function responseError($errors, $message = 'Data is invalid', $status_code = JsonResponse::HTTP_BAD_REQUEST): JsonResponse
+    {
+        return response()->json([
+            'status'  => false,
+            'message' => $message,
+            'errors'  => $errors,
+            'data'    => null,
+        ], $status_code);
+    }
+}
